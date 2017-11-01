@@ -139,7 +139,7 @@ class Books extends Component {
           <div className="singleBookContainer">
 		      <div className="bookTitle">{book.bookTitle}</div>
 		      <div className="text-center">
-              <img className="bookImage text-center" src={book.bookImage} alt="alt"/>
+              <img className="bookImage text-center" src={book.bookImage} alt="☒" />
             </div>
             <ul className="bookDetailsContainer">
               <li className="bookDetail">{book.bookAuthor}</li>
