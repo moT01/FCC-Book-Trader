@@ -1,54 +1,55 @@
 import React, { Component } from 'react';
 import './Books.css';
+import bookIcon from './book-icon.png';
 
 //this is temp info - will come from db later
 var allBooks = [
   {
   	 bookID: 1,
   	 bookTitle: 'this is a really really really long book title, that is really long.',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor1',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 2,  	
   	 bookTitle: 'bookTitle2',
-  	 bookImage: './book-icon.png',
+    bookImage: bookIcon,
   	 bookAuthor: 'an author that has a really long name for some reason',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 3,
   	 bookTitle: 'bookTitle3',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor3',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 4,
   	 bookTitle: 'bookTitle4',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor4',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 5,
   	 bookTitle: 'bookTitle5',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor5',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 6,
   	 bookTitle: 'bookTitle6',
-  	 bookImage: './book-icon.png',
-  	 bookAuthor: 'bookAuthor6',
+  	 bookImage: bookIcon,
+    bookAuthor: 'bookAuthor6',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 7,
   	 bookTitle: 'bookTitle3',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor3',
   	 bookReleased: '12-12-12'
   },
@@ -62,49 +63,49 @@ var allBooks = [
   {
   	 bookID: 9,
   	 bookTitle: 'bookTitle5',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor5',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 10,
   	 bookTitle: 'bookTitle6',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor6',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 7,
   	 bookTitle: 'bookTitle3',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor3',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 9,
   	 bookTitle: 'bookTitle4',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor4',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 8,
   	 bookTitle: 'bookTitle5',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor5',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 6,
   	 bookTitle: 'bookTitle6',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor6',
   	 bookReleased: '12-12-12'
   },
   {
   	 bookID: 7,
     bookTitle: 'bookTitle7',
-  	 bookImage: './book-icon.png',
+  	 bookImage: bookIcon,
   	 bookAuthor: 'bookAuthor7',
   	 bookReleased: '12-12-12'
   }  
