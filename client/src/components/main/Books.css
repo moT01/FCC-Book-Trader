@@ -1,0 +1,51 @@
+.manyBooksContainer {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.singleBookContainer {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-width: 200px;
+  max-width: 200px;
+  margin: 30px;
+  padding: 15px 0 0 0;
+  border: 1px solid #ccc;
+}
+
+.bookTitle {
+  font-variant: small-caps;
+  font-size: 16px;
+  text-align: center;
+  background-color: #ccc;
+}
+
+.bookImage {
+  margin: 15px;
+  max-width: 80%;
+}
+
+.bookDetailsContainer {
+  padding: 5px;
+  margin: 0;
+  list-style-position: inside;
+  font-size: 11px;
+  background-color: #ccc;
+}
+
+.bookDetail {}
+
+.btn {
+  margin: 5px 5px 5px 0;
+  border: 1px solid #333; 
+}
