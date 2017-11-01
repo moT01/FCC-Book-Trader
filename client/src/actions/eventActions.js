@@ -1,5 +1,4 @@
 import axios from 'axios';
-import yelp from 'yelp-v3';
 
 export function createEvent(event) {
   return dispatch => {
