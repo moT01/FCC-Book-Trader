@@ -19,6 +19,9 @@ var userSchema = new Schema({
   pass_digest:{
     type: String,
     required: true
+  },books:{
+    type:Array,
+    default:[]
   },
   lastSearch: String  
 });
