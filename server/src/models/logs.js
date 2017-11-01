@@ -1,8 +1,10 @@
-import {Schema,model} from 'mongoose'
-const logs = new Schema({
+let mongoose= require('mongoose');
+var Schema = mongoose.Schema;
+
+var logSchema = new Schema({
     id:{
         //id of the book
-        type:number,
+        type:Number,
         required:true,
         unique:true
     },
@@ -20,7 +22,7 @@ const logs = new Schema({
         type:Boolean,
         default:false
     },timestamp:{
-        type:number,
+        type:Number,
         default:Date.now()
     },reciever:{
         //username of the reciever
@@ -28,4 +30,4 @@ const logs = new Schema({
         required:false
     }
 })
-module.exports = model('logs',logs);
+module.exports = mongoose.model('logs',logSchema);

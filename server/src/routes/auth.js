@@ -3,6 +3,9 @@ import UserModel from '../models/users';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+//just to test
+import logs from '../models/logs' 
+
 let router = express.Router();
 
 router.post('/', (req, res) => {
