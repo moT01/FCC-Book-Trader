@@ -118,7 +118,7 @@ function GetIfIsMyBook(props) {
   }
   
   if(props.id < 5) {
-    return <div className="btn btn-warning">Cancel Request</div>
+    return <div className="btn btn-default">Cancel Request</div>
   }  	
   	  
   return <div className="btn btn-primary">Request</div>
