@@ -1,11 +1,10 @@
 import React from 'react';
+import Books from './Books';
 
 class MainPage extends React.Component {
   render(){
     return (
-      <div className="jumbotron">
-        <h1> Hi </h1>
-      </div>
+      <Books />
     );
   }
 }
