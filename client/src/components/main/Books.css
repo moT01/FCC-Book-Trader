@@ -21,13 +21,15 @@
   margin: 30px;
   padding: 15px 0 0 0;
   border: 1px solid #ccc;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 1px 1px 1px 0 #666;
 }
 
 .bookTitle {
   font-variant: small-caps;
   font-size: 16px;
   text-align: center;
-  background-color: #ccc;
+  background-color: #e3e3e3;
 }
 
 .bookImage {
@@ -40,7 +42,7 @@
   margin: 0;
   list-style-position: inside;
   font-size: 11px;
-  background-color: #ccc;
+  background-color: #e3e3e3;
 }
 
 .bookDetail {}
