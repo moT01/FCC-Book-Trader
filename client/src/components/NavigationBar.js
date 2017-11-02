@@ -25,8 +25,8 @@ class NavigationBar extends React.Component {
 
     const guestLinks = (
       <ul className="navbarButtonContainer">    
-        <li className="navbarButton"><Link to="/signup">Sign up</Link></li>
-        <li className="navbarButton"><Link to="/login">login</Link></li>
+        <li className="singleButtonContainer"><Link to="/signup" className="navbarButton">Sign up</Link></li>
+        <li className="singleButtonContainer"><Link to="/login" className="navbarButton">login</Link></li>
       </ul>
     );
     
