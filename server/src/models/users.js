@@ -1,32 +1,35 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+let UserBooks = new Schema({
+  name: String,
+  ISDN: Number
+})
 var userSchema = new Schema({
-  username:{
+  username: {
     type: String,
     required: true,
     unique: true
   },
-  email:{
+  email: {
     type: String,
     required: true,
     unique: true
   },
-  timezone:{
+  timezone: {
     type: String,
     required: true,
   },
-  zipcode:{
-    type: Number
-  },
-  pass_digest:{
+  pass_digest: {
     type: String,
     required: true
   },
-  books:{
-    type:Array,
-    default:[]
-  }
+  books: {
+    type: [UserBooks],
+    default: [],
+    required: false,
+    unique: true
+  },
+  lastSearch: String
 });
 
 module.exports = mongoose.model('UserModel', userSchema);
