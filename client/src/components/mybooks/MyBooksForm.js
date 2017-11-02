@@ -1,10 +1,9 @@
 import React from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
-import { createEvent } from '../../actions/eventActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 
-class EventForm extends React.Component {
+class MyBooksForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -47,8 +46,8 @@ class EventForm extends React.Component {
   }
 }
 
-EventForm.propTypes = {
-  createEvent: PropTypes.func.isRequired
+MyBooksForm.propTypes = {
+
 }
 
-export default connect(null, { createEvent })(EventForm);
+export default connect(null, null)(MyBooksForm);

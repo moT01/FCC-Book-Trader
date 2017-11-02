@@ -1,7 +1,7 @@
 import React from 'react';
-import EventForm from './EventForm';
+import EventForm from './MyBooksForm';
 
-class NewEventPage extends React.Component {
+class MyBooksPage extends React.Component {
   render() {
     return(
       <div>
@@ -11,4 +11,4 @@ class NewEventPage extends React.Component {
   }
 }
 
-export default NewEventPage;
+export default MyBooksPage;
