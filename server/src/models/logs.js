@@ -6,12 +6,12 @@ var logSchema = new Schema({
         //id of the book
         type:Number,
         required:true,
-        unique:true
+        unique:false
     },
     name:{
         type:String,
         required:true,
-        unique:true
+        unique:false
     },
     username:{
         // user himself will the sender
