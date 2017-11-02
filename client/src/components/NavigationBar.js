@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
+import './NavigationBar.css';
 
 class NavigationBar extends React.Component {
   logout(e){
@@ -13,28 +14,27 @@ class NavigationBar extends React.Component {
     const { isAuthenticated } = this.props.auth;
 
     const userLinks = (
-      <ul className="nav navbar-nav navbar-right">
-        <li><Link to="/new-event">Create</Link></li>
-        <li><Link to="#" onClick={this.logout.bind(this)}>logout</Link></li>
+      <ul className="navbarButtonContainer">
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>browse</Link></li>
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>myBooks</Link></li>
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>trade</Link></li>
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>profile</Link></li>
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>logout</Link></li>
       </ul>
     );
 
     const guestLinks = (
-      <ul className="nav navbar-nav navbar-right">
-        <li><Link to="/signup">Sign up</Link></li>
-        <li><Link to="/login">login</Link></li>
+      <ul className="navbarButtonContainer">    
+        <li className="navbarButton"><Link to="/signup">Sign up</Link></li>
+        <li className="navbarButton"><Link to="/login">login</Link></li>
       </ul>
     );
+    
     return (
-      <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <Link to="/" className='navbar-brand'> Brand </Link>
-          </div>
-          <div className="collapse navbar-collapse">
-              { isAuthenticated ? userLinks : guestLinks }
-          </div>
-        </div>
+      <nav className="navbarContainer">
+        <div className="singleButtonContainer"><Link to="/" className="navbarBrand">bookTrader</Link></div>       
+        
+        { isAuthenticated ? userLinks : guestLinks }
       </nav>
     );
   }
