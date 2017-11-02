@@ -113,6 +113,11 @@ var allBooks = [
 
 function GetIfIsMyBook(props) {
 	//temp test -- will need to test if book owner id == user id - or maybe change it all
+  //if not logged in
+  if(!props.id) {
+    return <div></div>  
+  }
+	
   if(props.id < 3) {	
     return <div className="btn btn-danger">Delete</div>
   }
@@ -121,7 +126,7 @@ function GetIfIsMyBook(props) {
     return <div className="btn btn-default">Cancel Request</div>
   }  	
   	  
-  return <div className="btn btn-primary">Request</div>
+  return <div></div>
 }
 
 class Books extends Component {
