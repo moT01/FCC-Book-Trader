@@ -16,14 +16,17 @@ var userSchema = new Schema({
     type: String,
     required: true,
   },
+  zipcode:{
+    type: Number
+  },
   pass_digest:{
     type: String,
     required: true
-  },books:{
+  },
+  books:{
     type:Array,
     default:[]
-  },
-  lastSearch: String  
+  }
 });
 
 module.exports = mongoose.model('UserModel', userSchema);

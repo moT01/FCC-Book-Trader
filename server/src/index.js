@@ -13,7 +13,7 @@ require('dotenv').config();
 var port = process.env.PORT || 8080;
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/night', { useMongoClient: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/book', { useMongoClient: true });
 
 let app = express();
 

@@ -46,14 +46,15 @@ router.get('/:identifier', (req, res) => {
 router.post('/', (req, res) => {
   validateInput(req.body, commonValidations).then(({ errors, isValid }) => {
     if (isValid) {
-      const { username, password, timezone, email } = req.body;
+      const { username, password, timezone, email, zipcode } = req.body;
       const pass_diest = bcrypt.hashSync(password, 10);
 
       var newUser = new UserModel ({
         username:username,
         email:email,
         timezone:timezone,
-        pass_digest:pass_diest
+        pass_digest:pass_diest,
+        zipcode:zipcode
       });
 
       newUser.save( function(err){

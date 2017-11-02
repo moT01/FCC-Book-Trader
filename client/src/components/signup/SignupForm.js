@@ -14,6 +14,7 @@ class SignupForm extends React.Component {
       password: '',
       passwordConfirmation: '',
       timezone: '',
+      zipcode: '',
       errors: {},
       isLoading: false,
       invalid: false
@@ -121,6 +122,13 @@ class SignupForm extends React.Component {
           value={this.state.passwordConfirmation}
           field="passwordConfirmation"
           type="password"
+        />
+        <TextFieldGroup
+          error={errors.zipcode}
+          label="Zipcode"
+          onChange={this.onChange}
+          value={this.state.zipcode}
+          field="zipcode"
         />
         <div className={classnames("form-group", { 'has-error': errors.timezone })}>
           <label className="control-label">Timezone</label>
