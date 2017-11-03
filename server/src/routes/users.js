@@ -6,6 +6,14 @@ import isEmpty from 'lodash/isEmpty';
 
 let router = express.Router();
 
+router.post('/zipcode', (req, res) => {
+ //  UserModel.find({_id: req.body._id}).then(user => {
+ //   console.log(user);
+ // });
+
+ console.log(req.body);
+});
+
 function validateInput(data, otherValidations) {
 
  let { errors } = otherValidations(data);
