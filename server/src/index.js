@@ -2,11 +2,9 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-
 import users from './routes/users';
 import auth from './routes/auth';
-import events from './routes/events';
-import books from './routes/book'
+import book from './routes/book';
 
 require('dotenv').config();
 
@@ -21,7 +19,6 @@ app.use(bodyParser.json());
 console.log(process.env.JWT_SECRET);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
-app.use('/api/events', events);
-app.use ('/api/books',books)
+app.use ('/api/book',book);
 
 app.listen(port, () => console.log('Running on port: ' + port));

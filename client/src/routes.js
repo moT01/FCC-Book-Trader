@@ -12,7 +12,6 @@ import LoginPage from './components/login/LoginPage';
 import SettingsPage from './components/settings/SettingsPage';
 import OffersPage from './components/offers/OffersPage';
 import MyBooksPage from './components/mybooks/MyBooksPage';
-
 import requireAuth from'./utils/requireAuth';
 
 const createRoutes = () => (

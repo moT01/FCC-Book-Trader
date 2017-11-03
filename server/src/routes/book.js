@@ -1,15 +1,20 @@
 import express from 'express';
-import books from '../models/books'
-import user from '../models/users'
+import axios from 'axios';
+import { without } from 'lodash';
+import authenticate from '../middlewares/authenticate';
+import books from '../models/books';
+import user from '../models/users';
+
 //var isbn = require('node-isbn');
 let fetch = require('node-fetch');
 let router = express.Router();
 
-router.get('/allBooks',(req,res,next)=>{
-    books.find()
-    .then(r=>res.send(r))
-    .catch(e=>res.send(e))
-})
+router.put('/allBooks',(req,res)=>{
+   books.find()
+   .then(r=>res.send(r))
+   .catch(e=>res.send(e))
+});
+
 router.get('/addBook/:isbn/:username', (req, res, next) => {
     let username = req.params.username;
     let isbn = req.params.isbn;
@@ -67,6 +72,6 @@ router.get('/addBook/:isbn/:username', (req, res, next) => {
     }
     addBook()
     //res.json({user:username,isbn:isbn})
-})
+});
 
 export default router;
