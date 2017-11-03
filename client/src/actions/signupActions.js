@@ -14,6 +14,6 @@ export function isUserExists(identifier) {
 
 export function changeZip(data) {
   return dispatch => {
-    return axios.post('/api/users/zip', data);
+    return axios.post('/api/users/zipcode', data);
   }
 }
