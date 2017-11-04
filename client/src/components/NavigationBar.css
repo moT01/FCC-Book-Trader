@@ -33,14 +33,18 @@
   display: inline-block;
 }
 
-.navbarButton {
+.navbarButton, .navbarBrand {
   padding: 20px;
   display: inline-block;
 }
 
-.navbarButton:hover {
+.navbarButton:hover, .navbarBrand:hover {
   text-decoration: none;
   background-color: #ccc;
+}
+
+.navbarButton:focus, .navbarBrand:focus {
+  text-decoration: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -57,7 +61,7 @@
 	  transform: rotate(-45deg);
 	}
 	
-   .navbarButton:hover {
+   .navbarButton:hover, .navbarBrand:hover {
 	  background-color: #e6e6e6;
 	}
 }
