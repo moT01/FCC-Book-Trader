@@ -13,7 +13,7 @@ class Books extends Component {
     return (
       <div className="manyBooksContainer">
         {this.props.allBooks.map((book, index) =>
-          <Book key={index} book={book} userID={this.props.id} />
+          <Book key={index} book={book} userID={this.props.id} username={this.props.username} />
         )}
       </div>
     );
@@ -23,6 +23,7 @@ class Books extends Component {
 function mapStateToProps(state) {
     return {
       id: state.auth.user.id,
+    	username: state.auth.user.username,
       allBooks: state.books.allBooks
     }
 }

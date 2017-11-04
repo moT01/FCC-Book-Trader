@@ -19,20 +19,20 @@ class NavigationBar extends React.Component {
         <li className="singleButtonContainer"><Link to="/my-books" className="navbarButton">My Books</Link></li>
         <li className="singleButtonContainer"><Link to="/offers" className="navbarButton">Offers</Link></li>
         <li className="singleButtonContainer"><Link to="/settings" className="navbarButton">Settings</Link></li>
-        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>logout</Link></li>
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>Logout</Link></li>
       </ul>
     );
 
     const guestLinks = (
       <ul className="navbarButtonContainer">
-        <li className="singleButtonContainer"><Link to="/signup" className="navbarButton">Sign up</Link></li>
-        <li className="singleButtonContainer"><Link to="/login" className="navbarButton">login</Link></li>
+        <li className="singleButtonContainer"><Link to="/signup" className="navbarButton">Signup</Link></li>
+        <li className="singleButtonContainer"><Link to="/login" className="navbarButton">Login</Link></li>
       </ul>
     );
 
     return (
       <nav className="navbarContainer">
-        <div className="singleButtonContainer"><Link to="/" className="navbarBrand">bookTrader</Link></div>
+        <div className="singleButtonContainer"><Link to="/" className="navbarBrand">book<b>T</b>rader</Link></div>
 
         { isAuthenticated ? userLinks : guestLinks }
       </nav>

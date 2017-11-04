@@ -21,6 +21,7 @@
 }
 
 .navbarBrand {
+  font-variant: small-caps;
   padding-left: 20px; 
 }
 

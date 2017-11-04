@@ -4,24 +4,20 @@ import { GetIfIsMyBook } from './BookConditionals';
 class Book extends React.Component {
   render() {
     return (
-      <div className="singleBookContainer">
-        <div className="bookTitle">{this.props.book.title}</div>
-
-        <div className="text-center">
-          <img className="bookImage text-center" src={this.props.book.image[0].medium} alt="☒" />
-        </div>
+      <div className="singleBookContainer" title={this.props.book.title}>
+        <img className="bookImage" src={this.props.book.image[0].medium} alt="☒" />
         
         <ul className="bookDetailsContainer">
           <li className="bookDetail">{this.props.book.authors[0]}</li>
           <li className="bookDetail">{this.props.book.publisher}</li>
           <li className="bookDetail">{this.props.book.ISBN}</li>
-          <li className="bookDetail">{this.props.book.bookUrl}</li>
         </ul>
         
-        <div className="text-right">
-          <GetIfIsMyBook userID={this.props.userID} />
+        <div className="bookButtonContainer">
+          <a className="btn btn-primary btn-left" href={this.props.book.bookUrl} target="_blank">more info</a>
+          <GetIfIsMyBook book={this.props.book} userID={this.props.userID} username={this.props.username} />
         </div>        
-      </div>    
+      </div>
     );
   }
 };
