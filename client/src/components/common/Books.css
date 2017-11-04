@@ -50,37 +50,23 @@
   display: flex;
   justify-content: space-between;
 }
-
-.text-right {
-  border-radius: 0 0 10px 0;
-  background-color: #e6e6e6;
-}
-
+ 
 .btn {
-	font-variant: small-caps;
+  font-variant: small-caps;
   font-family: Helvetica;
   font-size: 13px;
   padding: 0 6px;
-  /*margin: 0 10px 5px 0;*/
   border: 1px solid #666;
 }
 
-.btn-right {
+.bookButtonRight {
   border-radius: 5px 5px 10px 5px;
 }
 
-.btn-left {
+.bookButtonLeft {
   border-radius: 5px 5px 5px 0px;
 }
 
 .btn:hover {
   border: 1px solid #666;
-}
-
-.btn-default {
-  background-color: #e3e3e3;
-}
-
-.btn-default:hover {
-  background-color: #ccc;
 }
