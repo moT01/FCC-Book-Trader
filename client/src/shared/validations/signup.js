@@ -9,6 +9,16 @@ export default function validateInput(data) {
   if(Validator.isEmpty(data.email)) {
     errors.email = 'This field is required';
   }
+  if(/^\d+$/.test(data.zipcode) === false) {
+    errors.zipcode = 'Enter only numbers';
+  }
+  if(data.zipcode.length > 32) {
+   errors.zipcode= 'Maximum 32 characters are allowed';
+  }
+  if(Validator.isEmpty(data.zipcode)) {
+    console.log("catch this");
+    errors.zipcode = 'This field is required';
+  }
   if(!Validator.isEmail(data.email)) {
     errors.email = 'Email is invalid';
   }

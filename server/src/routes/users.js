@@ -7,11 +7,23 @@ import isEmpty from 'lodash/isEmpty';
 let router = express.Router();
 
 router.post('/zipcode', (req, res) => {
- //  UserModel.find({_id: req.body._id}).then(user => {
- //   console.log(user);
- // });
+var {zipcode, userID} = req.body
 
- console.log(req.body);
+console.log(req.body);
+  UserModel.findOne({_id: userID}, function (err, user) {
+    if(err)
+    console.log(err);
+    else{
+      user.zipcode = zipcode;
+      user.save(function(err, user){
+        if (err) {
+          res.status(500).json({ error: err });
+        }else{
+          res.json({zipcode:user.zipcode});
+        }
+      });
+    }
+  });
 });
 
 function validateInput(data, otherValidations) {

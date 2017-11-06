@@ -23,6 +23,10 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
+  zipcode: {
+    type: Number,
+    required: true
+  },
   books: {
     type: [UserBooks],
     default: [],

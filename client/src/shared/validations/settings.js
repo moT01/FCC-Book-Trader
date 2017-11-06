@@ -11,7 +11,7 @@ export default function validateInput(data){
   }
   console.log(data.zipcode.length);
    if(data.zipcode.length > 32) {
-    data.zipcode= 'Maximum 32 characters are allowed';
+    errors.zipcode= 'Maximum 32 characters are allowed';
    }
   return {
     errors,

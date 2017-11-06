@@ -4,12 +4,14 @@ import validateInput from '../../shared/validations/settings';
 import { connect } from 'react-redux';
 import { changeZip } from '../../actions/signupActions';
 import PropTypes from 'prop-types';
+import { addFlashMessage } from '../../actions/flashMessages.js';
 
 
 class SettingsForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      userID: this.props.id,
       zipcode:'',
       errors: {},
       isLoading: false
@@ -32,12 +34,14 @@ class SettingsForm extends React.Component {
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true});
       this.props.changeZip(this.state).then(
-        (res) => this.props.addFlashMessage({
+        (res) => {
+          this.setState({zipcode: '', isLoading: false});
+          this.props.addFlashMessage({
           type: 'success',
           text: 'Your zipcode has changed successfully.'
-        }),
+        })}
         //server verification to be added
-        //(err) => this.setState({ errors: err.response.data.errors, isLoading: false})
+        //,(err) => this.setState({ errors: err.response.data.errors, isLoading: false})
       );
     }
   }
@@ -48,15 +52,11 @@ class SettingsForm extends React.Component {
 
   render() {
     const { errors, zipcode, isLoading} = this.state;
-    console.log("zipcode" + zipcode);
-    console.log(errors);
     return(
       <form onSubmit={this.onSubmit}>
         <h1>Settings</h1>
 
-        { /*
-          //to be added
-          errors.form && <div className="alert alert-danger">{errors.form}</div> */}
+        {errors.form && <div className="alert alert-danger">{errors.form}</div>}
 
         <TextFieldGroup
           field="zipcode"
@@ -80,4 +80,10 @@ SettingsForm.contextTypes = {
   router: PropTypes.object.isRequired
 }
 
-export default connect(null, {changeZip}) (SettingsForm);
+function mapStateToProps(state) {
+    return {
+      id: state.auth.user.id
+    }
+}
+
+export default connect(mapStateToProps, {changeZip, addFlashMessage}) (SettingsForm);

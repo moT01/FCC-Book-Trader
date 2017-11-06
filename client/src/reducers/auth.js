@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER } from '../actions/types';
+import { SET_CURRENT_USER, CHANGE_ZIP} from '../actions/types';
 import isEmpty from 'lodash/isEmpty';
 
 const initialState = {
@@ -12,6 +12,12 @@ export default (state = initialState, action = {}) => {
         return {
           isAuthenticated: !isEmpty(action.user),
           user: action.user
+        }
+      case CHANGE_ZIP:
+        return { ...state,
+          user: { ...state.user,
+            zipcode: action.zipcode
+          }
         }
       default: return state;
     }
