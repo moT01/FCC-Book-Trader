@@ -30,17 +30,16 @@ class MyBooksForm extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <h1> Create New Game Event </h1>
-
+        <h1> My Books </h1>
         <TextFieldGroup
           field="title"
-          label="Event Title"
+          label="New book title"
           name="title"
           value={title}
           onChange={this.onChange}
           error={errors.title}
           />
-        <button type="submit" disabled={isLoading} className="btn btn-primary">Create</button>
+        <button type="submit" disabled={isLoading} className="btn btn-primary">Add</button>
       </form>
     );
   }
