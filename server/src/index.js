@@ -20,5 +20,5 @@ console.log(process.env.JWT_SECRET);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use ('/api/book',book);
-
+console.log(process.env.MONGODB_URI || 'mongodb://localhost/book');
 app.listen(port, () => console.log('Running on port: ' + port));
