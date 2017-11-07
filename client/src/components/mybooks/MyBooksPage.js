@@ -1,12 +1,12 @@
 import React from 'react';
-import EventForm from './MyBooksForm';
+import NewBookForm from './NewBookForm';
 import Books from './Books';
 
 class MyBooksPage extends React.Component {
   render() {
     return(
       <div>
-        <EventForm />
+        <NewBookForm />
         <Books />
       </div>
     );

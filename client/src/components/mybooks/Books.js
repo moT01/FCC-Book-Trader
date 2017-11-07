@@ -11,7 +11,7 @@ class Books extends Component {
   render() {
     return (
       <div className="manyBooksContainer">
-        {this.props.allBooks.map((book, index) =>
+        {this.props.allBooks.filter(book => book.current_owner !== this.props.username).map((book, index) =>
           <Book key={index} book={book} userID={this.props.id} username={this.props.username} />
         )}
       </div>
