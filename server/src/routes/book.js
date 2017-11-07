@@ -15,8 +15,31 @@ router.put('/allBooks',(req,res)=>{
    .catch(e=>res.send(e))
 });
 
-router.get('/addBook/:isbn/:username', (req, res, next) => {
-    let username = req.params.username;
+router.post('/addBook', (req, res) => {
+	//this is what gets sent to /addBook
+	var {isbn, userID, username} = req.body;
+   var message = {'messageType': 'success', 'messageMessage': 'ISBN Added'};
+   
+   //here's the variables available need for this route
+   //try adding a book in the myBooks page to see the logs
+	console.log('userID='+userID);
+	console.log('username='+username);	
+	console.log('isbn='+isbn);
+	
+   //i want the response to look like this	
+	// [allBooks, message]
+	//as shown below
+	//there's two message types
+	//one message is shown above
+	//if the isbn is not found
+	//send this message back...
+   //var message = {'messageType': 'error', 'messageMessage': 'ISBN Not Found'};
+	
+	books.find().then(r => res.send([r, message]) );
+	
+   //if there's complications we can see about changing some things
+
+    /*let username = req.params.username;
     let isbn = req.params.isbn;
     //first part is to check if the username is valid
     async function getBookFromIsbn(isbn,username){
@@ -71,7 +94,7 @@ router.get('/addBook/:isbn/:username', (req, res, next) => {
         }
     }
     addBook()
-    //res.json({user:username,isbn:isbn})
+    //res.json({user:username,isbn:isbn})*/
 });
 
 export default router;

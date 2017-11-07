@@ -28,8 +28,3 @@ export function login(data){
     });
   }
 }
-
-//.then(res => {
-  //console.log(res.data);
-  //dispatch(loadAllBooks(allBooks));
-//});

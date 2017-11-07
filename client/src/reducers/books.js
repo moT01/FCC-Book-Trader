@@ -1,7 +1,8 @@
-import { LOAD_ALL_BOOKS } from '../actions/types';
+import { LOAD_ALL_BOOKS, BOOKS_AND_MESSAGE } from '../actions/types';
 
 const initialState = {
-  allBooks : []
+  allBooks : [],
+  message : ''
 };
 
 export default (state = initialState, action = {}) => {
@@ -10,6 +11,15 @@ export default (state = initialState, action = {}) => {
       return {
         allBooks: action.allBooks
       }
+    case BOOKS_AND_MESSAGE:
+      return {
+        allBooks: action.allBooks,
+        message: action.messages
+      }
     default: return state;
   }
 }
+
+//action.something
+//is sent with from dispatch(function(data))
+//and data is the response from the api
