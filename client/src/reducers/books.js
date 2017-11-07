@@ -19,7 +19,3 @@ export default (state = initialState, action = {}) => {
     default: return state;
   }
 }
-
-//action.something
-//is sent with from dispatch(function(data))
-//and data is the response from the api
