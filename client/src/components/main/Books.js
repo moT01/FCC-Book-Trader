@@ -22,8 +22,8 @@ class Books extends Component {
 function mapStateToProps(state) {
     return {
       id: state.auth.user.id,
-    	username: state.auth.user.username,
-      allBooks: state.books.allBooks,
+      username: state.auth.user.username,
+      allBooks: state.books.allBooks
     }
 }
 

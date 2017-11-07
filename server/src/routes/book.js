@@ -20,7 +20,7 @@ router.post('/addBook', (req, res) => {
 	var {isbn, userID, username} = req.body;
    var message = {'messageType': 'success', 'messageMessage': 'ISBN Added'};
    
-   //here's the variables available need for this route
+   //here's the variables
    //try adding a book in the myBooks page to see the logs
 	console.log('userID='+userID);
 	console.log('username='+username);	
@@ -37,7 +37,11 @@ router.post('/addBook', (req, res) => {
 	
 	books.find().then(r => res.send([r, message]) );
 	
-   //if there's complications we can see about changing some things
+   //if there's complications we can change some things
+   
+   
+   
+   
 
     /*let username = req.params.username;
     let isbn = req.params.isbn;
