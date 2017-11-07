@@ -12,7 +12,7 @@ class Books extends Component {
     return (
       <div className="manyBooksContainer">
         {this.props.allBooks.filter(book => book.current_owner !== this.props.username).map((book, index) =>
-          <Book key={index} book={book} userID={this.props.id} username={this.props.username} />
+          <Book key={index} book={book} />
         )}
       </div>
     );
@@ -21,7 +21,6 @@ class Books extends Component {
 
 function mapStateToProps(state) {
     return {
-      id: state.auth.user.id,
     	username: state.auth.user.username,
       allBooks: state.books.allBooks
     }

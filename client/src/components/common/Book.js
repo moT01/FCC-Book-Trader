@@ -1,8 +1,35 @@
 import React from 'react';
-import { GetIfIsMyBook } from './BookConditionals';
+import { GetBookStatus } from './BookConditionals';
+import { requestBook, deleteBook } from '../../actions/bookActions';
+import { addFlashMessage } from '../../actions/flashMessages';
+import { connect } from 'react-redux';
 import './Books.css';
 
 class Book extends React.Component {
+  deleteBook(){
+    console.log('delete');
+    this.props.deleteBook(this.props.book.ISBN).then(res => {
+      this.props.addFlashMessage({
+        type: this.props.messages.messageType,
+        text: this.props.messages.messageMessage
+      });
+    });
+  }
+
+  requestBook(e){
+    console.log('request');
+    this.props.requestBook(this.props.book.ISBN, this.props.id).then(res => {
+      this.props.addFlashMessage({
+        type: this.props.messages.messageType,
+        text: this.props.messages.messageMessage
+      });    
+    });
+  }
+
+  //unrequestBook(){
+    //this.props.unrequestBook({myid, bookid});
+  //}
+
   render() {
     return (
       <div className="singleBookContainer" title={this.props.book.title}>
@@ -16,11 +43,28 @@ class Book extends React.Component {
         
         <div className="bookButtonContainer">
           <a className="btn btn-primary bookButtonLeft" href={this.props.book.bookUrl} target="_blank">more info</a>
-          <GetIfIsMyBook book={this.props.book} userID={this.props.userID} username={this.props.username} />
-        </div>        
+          <GetBookStatus 
+            book={this.props.book} 
+            userID={this.props.id}
+            username={this.props.username} 
+            requestBook={this.requestBook.bind(this)}
+            deleteBook={this.deleteBook.bind(this)}
+          />
+        </div>
       </div>
     );
   }
 };
 
-export default Book;
+//export default Book;
+
+
+function mapStateToProps(state) {
+    return {
+     	messages: state.books.message,
+      id: state.auth.user.id,
+    	username: state.auth.user.username
+    }
+}
+
+export default connect(mapStateToProps, {requestBook, deleteBook, addFlashMessage})(Book);
