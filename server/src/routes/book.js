@@ -9,7 +9,7 @@ import user from '../models/users';
 let fetch = require('node-fetch');
 let router = express.Router();
 
-router.put('/allBooks',(req,res)=>{
+router.get('/allBooks',(req,res)=>{
    books.find()
    .then(r=>res.send(r))
    .catch(e=>res.send(e))
@@ -22,9 +22,9 @@ router.post('/addBook', (req, res) => {
    
    //here's the variables
    //try adding a book in the myBooks page to see the logs
-	console.log('userID='+userID);
-	console.log('username='+username);	
-	console.log('isbn='+isbn);
+	//console.log('userID='+userID);
+	//console.log('username='+username);	
+	//console.log('isbn='+isbn);
 	
    //i want the response to look like this	
 	// [allBooks, message]
@@ -40,9 +40,6 @@ router.post('/addBook', (req, res) => {
    //if there's complications we can change some things
    
    
-   
-   
-
     /*let username = req.params.username;
     let isbn = req.params.isbn;
     //first part is to check if the username is valid
@@ -100,5 +97,61 @@ router.post('/addBook', (req, res) => {
     addBook()
     //res.json({user:username,isbn:isbn})*/
 });
+
+router.delete('/deleteBook', (req, res) => {
+	var {isbn} = req.body;
+   var message = {'messageType': 'error', 'messageMessage': 'Book Removed'};
+   
+   //here's the variables
+   //try deleting a book in the myBooks page if the option is there to see the logs
+	console.log('isbn='+isbn);
+	
+   //i want the response to look like this	
+	// [allBooks, message]
+	//as shown at the bottom
+	
+	//so in here we need to delete the book
+	//then send the response
+
+	books.find().then(r => res.send([r, message]) );
+});
+
+router.patch('/requestBook', (req, res) => {
+	var {isbn, userID} = req.body;
+   var message = {'messageType': 'success', 'messageMessage': 'Book Requested'};
+   
+   //here's the variables
+   //try requesting a book in myBooks if the option is there to see the logs
+	console.log('userID='+userID);
+	console.log('isbn='+isbn);
+	
+   //i want the response to look like this	
+	// [allBooks, message]
+	//as shown at the bottom
+	
+	//so in here we need to add the userId to the books requestedFrom object/array
+	//then send the response
+	
+	books.find().then(r => res.send([r, message]) );
+});
+
+router.patch('/unrequestBook', (req, res) => {
+	//this one is not written yet
+	var {isbn, userID} = req.body;
+   var message = {'messageType': 'success', 'messageMessage': 'Book Unrequested'};
+   
+   //here's the variables
+   //try adding a book in the myBooks page to see the logs
+	//console.log('userID='+userID);
+	//console.log('username='+username);	
+	//console.log('isbn='+isbn);
+	
+   //i want the response to look like this	
+	// [allBooks, message]
+	//as shown below
+	
+	books.find().then(r => res.send([r, message]) );
+});
+
 
 export default router;

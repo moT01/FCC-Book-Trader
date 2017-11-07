@@ -26,10 +26,7 @@ class NewBookForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.setState({ errors: {}, isLoading: true});
     this.props.addNewBook(this.state).then(() => {
-      this.setState({isbn: '', isLoading: false});
-
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
         text: this.props.messages.messageMessage
@@ -38,7 +35,6 @@ class NewBookForm extends React.Component {
   }
 
   render() {
-  	console.log(this.props.state);
     const { isbn, errors, isLoading } = this.state;
 
     return (
@@ -64,7 +60,6 @@ NewBookForm.propTypes = {
 
 function mapStateToProps(state) {
     return {
-    	state: state,
     	messages: state.books.message,
       id: state.auth.user.id,
       username: state.auth.user.username
