@@ -35,9 +35,9 @@ export function addNewBook(data) {
   }
 }
 
-export function requestBook(isbn, userID) {
+export function requestBook(isbn, username) {
   return dispatch => {
-    return axios.patch('/api/book/requestBook', {isbn, userID}).then(res => {
+    return axios.patch('/api/book/requestBook', {isbn, username}).then(res => {
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));
@@ -48,6 +48,26 @@ export function requestBook(isbn, userID) {
 export function deleteBook(isbn) {
   return dispatch => {
     return axios.delete('/api/book/deleteBook', {isbn}).then(res => {
+      const allBooks = res.data[0];
+      const messages = res.data[1];
+      dispatch(allBooksPlusMessage(allBooks, messages));
+    });
+  }
+}
+
+export function unrequestBook(isbn, username) {
+  return dispatch => {
+    return axios.delete('/api/book/unrequestBook', {isbn}).then(res => {
+      const allBooks = res.data[0];
+      const messages = res.data[1];
+      dispatch(allBooksPlusMessage(allBooks, messages));
+    });
+  }
+}
+
+export function acceptOffer(isbn, username) {
+  return dispatch => {
+    return axios.delete('/api/book/acceptOffer', {isbn}).then(res => {
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));
