@@ -27,6 +27,10 @@ var bookSchema = new Schema({
     authors:{
         type:Array,
         default:[]
-    }
+    },
+    requestedFrom:{
+      type:Array,
+      default:[]
+    },
 })
 module.exports = mongoose.model('books', bookSchema);

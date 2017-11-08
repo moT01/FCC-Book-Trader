@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { getAllBooks } from '../../actions/bookActions';
 import Book from '../common/Book';
-import { connect } from 'react-redux';
 
 class Books extends Component { 
   componentWillMount() {

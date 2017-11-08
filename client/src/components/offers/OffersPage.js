@@ -1,11 +1,11 @@
 import React from 'react';
-import EventForm from './OffersForm';
+import Offers from './Offers';
 
 class OffersPage extends React.Component {
   render() {
     return(
       <div>
-        <EventForm />
+        <Offers />
       </div>
     );
   }

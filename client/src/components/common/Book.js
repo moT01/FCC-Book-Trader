@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetBookStatus } from './BookConditionals';
-import { requestBook, deleteBook } from '../../actions/bookActions';
+import { requestBook, deleteBook, unrequestBook } from '../../actions/bookActions';
 import { addFlashMessage } from '../../actions/flashMessages';
 import { connect } from 'react-redux';
 import './Books.css';
@@ -16,19 +16,25 @@ class Book extends React.Component {
     });
   }
 
-  requestBook(e){
+  requestBook(){
     console.log('request');
-    this.props.requestBook(this.props.book.ISBN, this.props.id).then(res => {
+    this.props.requestBook(this.props.book.ISBN, this.props.username).then(res => {
+      this.props.addFlashMessage({
+        type: this.props.messages.messageType,
+        text: this.props.messages.messageMessage
+      });
+    });
+  }
+
+  unrequestBook(){
+  	 console.log('unrequest');
+    this.props.unrequestBook(this.props.book.ISBN, this.props.username).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
         text: this.props.messages.messageMessage
       });    
     });
   }
-
-  //unrequestBook(){
-    //this.props.unrequestBook({myid, bookid});
-  //}
 
   render() {
     return (
@@ -49,15 +55,13 @@ class Book extends React.Component {
             username={this.props.username} 
             requestBook={this.requestBook.bind(this)}
             deleteBook={this.deleteBook.bind(this)}
+            unrequestBook={this.unrequestBook.bind(this)}
           />
         </div>
       </div>
     );
   }
 };
-
-//export default Book;
-
 
 function mapStateToProps(state) {
     return {
@@ -67,4 +71,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {requestBook, deleteBook, addFlashMessage})(Book);
+export default connect(mapStateToProps, {requestBook, deleteBook, unrequestBook, addFlashMessage})(Book);
