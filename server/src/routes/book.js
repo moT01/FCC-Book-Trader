@@ -46,7 +46,7 @@ router.post('/addBook', (req, res) => {
             response = await newBook.save();
         }catch(e){
             console.log("errorZ: " + e);
-            message = {'messageType': 'error', 'messageMessage': e};
+          message = {'messageType': 'error', 'messageMessage': e};
             response = {}
             error = e;
         }finally{
