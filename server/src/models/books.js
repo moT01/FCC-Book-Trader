@@ -5,13 +5,11 @@ var bookSchema = new Schema({
     ISBN: {
         //id of the book
         type: Number,
-        required: true,
-        unique: true
+        required: true
     },
     title: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     current_owner: {
         // username of the owner
@@ -20,17 +18,21 @@ var bookSchema = new Schema({
     },
     publisher:String,
     image:{
-        type:Array,
-        default:[]
+        type:Object,
+        default:{}
     },
     bookUrl:String,
     authors:{
         type:Array,
         default:[]
     },
-    requestedFrom:{
+    requested_From:{
       type:Array,
       default:[]
     },
+    request_accepted:{
+      type:Boolean,
+      default:false
+    }
 })
 module.exports = mongoose.model('books', bookSchema);

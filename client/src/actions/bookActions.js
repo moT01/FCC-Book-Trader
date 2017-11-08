@@ -28,6 +28,7 @@ export function getAllBooks() {
 export function addNewBook(data) {
   return dispatch => {
     return axios.post('/api/book/addBook', data).then(res => {
+      console.log(res);
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));

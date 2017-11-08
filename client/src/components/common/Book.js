@@ -32,27 +32,27 @@ class Book extends React.Component {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
         text: this.props.messages.messageMessage
-      });    
+      });
     });
   }
 
   render() {
     return (
       <div className="singleBookContainer" title={this.props.book.title}>
-        <img className="bookImage" src={this.props.book.image[0].large} alt="☒" />
-        
+        <img className="bookImage" src={this.props.book.image.large} alt="☒" />
+
         <ul className="bookDetailsContainer">
           <li className="bookDetail">{this.props.book.authors[0]}</li>
           <li className="bookDetail">{this.props.book.publisher}</li>
           <li className="bookDetail">{this.props.book.ISBN}</li>
         </ul>
-        
+
         <div className="bookButtonContainer">
           <a className="btn btn-primary bookButtonLeft" href={this.props.book.bookUrl} target="_blank">more info</a>
-          <GetBookStatus 
-            book={this.props.book} 
+          <GetBookStatus
+            book={this.props.book}
             userID={this.props.id}
-            username={this.props.username} 
+            username={this.props.username}
             requestBook={this.requestBook.bind(this)}
             deleteBook={this.deleteBook.bind(this)}
             unrequestBook={this.unrequestBook.bind(this)}
