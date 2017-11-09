@@ -39,7 +39,7 @@ class Book extends React.Component {
   render() {
     return (
       <div className="singleBookContainer" title={this.props.book.title}>
-        <img className="bookImage" src={this.props.book.image.large} alt="☒" />
+        <img className="bookImage" src={this.props.book.image ? this.props.book.image.large : 'http://via.placeholder.com/180x275'} alt="☒" />
 
         <ul className="bookDetailsContainer">
           <li className="bookDetail">{this.props.book.authors[0]}</li>

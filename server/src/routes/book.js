@@ -50,9 +50,10 @@ router.post('/addBook', (req, res) => {
             response = {}
             error = e;
         }finally{
-          console.log(response);
-          console.log(message);
-          res.send([response, message]);
+
+          books.find()
+              .then(r=>res.send([r,message]))
+              .catch(e=>res.send([e,message]));
         }
     }
 
