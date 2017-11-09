@@ -28,12 +28,18 @@ router.post('/addBook', (req, res) => {
             //api of openbooks which returns the book details for the given isbn number
             let url = "https://openlibrary.org/api/books?bibkeys=ISBN:"+isbn+"&jscmd=data&format=json";
             let resApi = await fetch(url);
+            //let axiosGet = await axios.get(url);
+            //let axiosGet = await axios.get(url);
+            // console.log(resApi);
+            // console.log("111111111111111111111");
+            // console.log(axiosGet);
+            // console.log("###############################################################");
             let output = await resApi.json();
             output = output[`ISBN:${isbn}`];
-
+            console.log(output);
             //save as a model
             var newBook = new books ({
-              ISBN: isbn,
+              ISBN: parseInt(isbn),
               title: output.title,
               current_owner: username,
               publisher: output.publishers[0].name,
@@ -45,8 +51,13 @@ router.post('/addBook', (req, res) => {
             //save in the db
             response = await newBook.save();
         }catch(e){
-            console.log("errorZ: " + e);
-          message = {'messageType': 'error', 'messageMessage': e};
+            console.log("log: " + e);
+            if( e = {TypeError: "Cannot read property 'title' of undefined"}){
+              message = {'messageType': 'error', 'messageMessage': 'book not found'};
+            }else{
+              message = {'messageType': 'error', 'messageMessage': 'server error'};
+            }
+
             response = {}
             error = e;
         }finally{
@@ -60,22 +71,27 @@ router.post('/addBook', (req, res) => {
     getBookFromIsbn(isbn,username);
 });
 
-router.delete('/deleteBook', (req, res) => {
-	const {isbn} = req.body;
+router.delete('/deleteBook/:id', (req, res) => {
+	const _id = req.params.id;
    let message = {'messageType': 'error', 'messageMessage': 'Book Removed'};
+   let error;
 
-   //here's the variables
-   //try deleting a book in the myBooks page if the option is there to see the logs
-	console.log('isbn='+isbn);
+	console.log(_id);
+  async function deleteBookID(_id){
+     try{
+       var deleted = await books.remove({_id:_id});
+     }catch(e){
+         console.log("log: " + e);
+         message = {'messageType': 'error', 'messageMessage': 'server error'};
+         error = e;
+     }finally{
+       books.find()
+           .then(r=>res.send([r,message]))
+           .catch(e=>res.send([e,message]));
+     }
+ }
 
-   //i want the response to look like this
-	// [allBooks, message]
-	//as shown at the bottom
-
-	//so in here we need to delete the book
-	//then send the response
-
-	books.find().then(r => res.send([r, message]) );
+ deleteBookID(_id);
 });
 
 router.patch('/requestBook', (req, res) => {
@@ -135,29 +151,3 @@ router.patch('/acceptOffer', (req, res) => {
 });
 
 export default router;
-// let result = {
-//     title: output.title,
-//     publisher: output.publishers[0].name,
-//     ISBN: parseInt(isbn),//book proprty of books model is number
-//     image: output.cover,
-//     bookUrl: output.url,
-//     authors: output.authors.map(author => author.name),
-//     current_owner:username
-// }
-// async function addBook() {
-//     let isValidUser = await user.find({ username: username })
-//     isValidUser = isValidUser.length;
-//     if (isValidUser == 0) {
-//         res.send("invalid user")
-//     } else {
-//         let result = await getBookFromIsbn(isbn,username);
-//         // let newBook = new books();
-//         // newBook.isbn=isbn;
-//         // newBook.name= "test";
-//         // newBook.current_owner= username;
-//         // let result = await newBook.save();
-//         //res.send(result)
-//     }
-// }
-// addBook()
-//res.json({user:username,isbn:isbn})*/

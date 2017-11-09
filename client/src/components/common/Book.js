@@ -7,8 +7,8 @@ import './Books.css';
 
 class Book extends React.Component {
   deleteBook(){
-    console.log('delete');
-    this.props.deleteBook(this.props.book.ISBN).then(res => {
+    console.log(this.props.book._id);
+    this.props.deleteBook(this.props.book._id).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
         text: this.props.messages.messageMessage

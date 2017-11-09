@@ -46,9 +46,10 @@ export function requestBook(isbn, username) {
   }
 }
 
-export function deleteBook(isbn) {
+export function deleteBook(_id) {
+  console.log("fromaction:"+ _id);
   return dispatch => {
-    return axios.delete('/api/book/deleteBook', {isbn}).then(res => {
+    return axios.delete('/api/book/deleteBook/' + _id).then(res => {
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));
