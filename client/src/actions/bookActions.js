@@ -57,9 +57,9 @@ export function deleteBook(_id) {
   }
 }
 
-export function unrequestBook(isbn, username) {
+export function unrequestBook(_id, username) {
   return dispatch => {
-    return axios.delete('/api/book/unrequestBook', {isbn}).then(res => {
+    return axios.delete('/api/book/unrequestBook', {_id, username}).then(res => {
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));
@@ -67,9 +67,9 @@ export function unrequestBook(isbn, username) {
   }
 }
 
-export function acceptOffer(isbn, username) {
+export function acceptOffer(_id, username, reqUsername) {
   return dispatch => {
-    return axios.delete('/api/book/acceptOffer', {isbn}).then(res => {
+    return axios.delete('/api/book/acceptOffer', {_id, username, reqUsername}).then(res => {
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));

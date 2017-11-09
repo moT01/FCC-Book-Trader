@@ -28,12 +28,6 @@ router.post('/addBook', (req, res) => {
             //api of openbooks which returns the book details for the given isbn number
             let url = "https://openlibrary.org/api/books?bibkeys=ISBN:"+isbn+"&jscmd=data&format=json";
             let resApi = await fetch(url);
-            //let axiosGet = await axios.get(url);
-            //let axiosGet = await axios.get(url);
-            // console.log(resApi);
-            // console.log("111111111111111111111");
-            // console.log(axiosGet);
-            // console.log("###############################################################");
             let output = await resApi.json();
             output = output[`ISBN:${isbn}`];
             console.log(output);
@@ -132,7 +126,6 @@ router.patch('/unrequestBook', (req, res) => {
        await books.findOne({"_id":_id}, function (err, book) {
            console.log(book.requested_From);
            console.log(username);
-           //book.requested_From.push(username);
            let index = book.requested_From.indexOf(username);
            if (index > -1) {
               book.requested_From.splice(index, 1);
@@ -153,23 +146,29 @@ router.patch('/unrequestBook', (req, res) => {
 });
 
 router.patch('/acceptOffer', (req, res) => {
-	const {isbn, username} = req.body;
+	const {_id, username, reqUsername} = req.body;
    let message = {'messageType': 'success', 'messageMessage': 'Offer Accepted'};
-
-   //here's the variables
-	//console.log('username='+username);
-	//console.log('isbn='+isbn);
-
-   //i want the response to look like this
-	// [allBooks, message]
-	//as shown below
-
-	//here we need to change the current_owner of the book to username and either
-	//remove that user from the requestedFrom array
-	//or maybe just clear out that whole array?
-
-
-	books.find().then(r => res.send([r, message]) );
+   let error;
+   async function accept(_id, username, reqUsername){
+     try{
+       await books.findOne({"_id":_id}, function (err, book) {
+           console.log(book.requested_From);
+           console.log(username);
+           book.requested_From = [reqUsername];
+           book.request_accepted = true;
+           book.save();
+         });
+     }catch(e){
+         console.log("log: " + e);
+         message = {'messageType': 'error', 'messageMessage': 'server error'};
+         error = e;
+     }finally{
+       books.find()
+           .then(r=>res.send([r,message]))
+           .catch(e=>res.send([e,message]));
+     }
+   }
+   accept(_id, username, reqUsername);
 });
 
 export default router;
