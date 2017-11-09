@@ -30,7 +30,7 @@ router.post('/addBook', (req, res) => {
             let resApi = await fetch(url);
             let output = await resApi.json();
             output = output[`ISBN:${isbn}`];
-            console.log(output);
+
             //save as a model
             var newBook = new books ({
               ISBN: parseInt(isbn),
@@ -65,7 +65,7 @@ router.post('/addBook', (req, res) => {
     getBookFromIsbn(isbn,username);
 });
 
-router.delete('/deleteBook/:id', (req, res) => {
+router.post('/deleteBook/:id', (req, res) => {
 	const _id = req.params.id;
    let message = {'messageType': 'error', 'messageMessage': 'Book Removed'};
    let error;
@@ -79,6 +79,7 @@ router.delete('/deleteBook/:id', (req, res) => {
          message = {'messageType': 'error', 'messageMessage': 'server error'};
          error = e;
      }finally{
+     	console.log(message);
        books.find()
            .then(r=>res.send([r,message]))
            .catch(e=>res.send([e,message]));
@@ -118,6 +119,8 @@ router.patch('/requestBook', (req, res) => {
 
 router.patch('/unrequestBook', (req, res) => {
 	const {_id, username} = req.body;
+	console.log('id='+_id);
+	console.log('username='+username);
    let message = {'messageType': 'success', 'messageMessage': 'Book Unrequested'};
    let error;
 
