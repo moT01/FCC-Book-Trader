@@ -7,10 +7,10 @@ export function GetIfOffer(props) {
   }
 
   //if my book && >= 1 requests
-  if(props.username === props.book.current_owner && props.book.requestFrom.length > 0) {
+  if(props.username === props.book.current_owner && props.book.requested_From.length > 0) {
     return (
       <div>
-        {props.book.requestedFrom.map(user => 
+        {props.book.requested_From.map(user => 
           <div className="offerContainer">
             <div>user {user} wants {props.book.title}</div>
             <button onClick={props.accept} className="btn btn-secondary">unrequest</button>
@@ -30,8 +30,8 @@ export function GetIfRequest(props) {
   }
 
   //if I requested this book
-  for(let i=0; i < props.book.requestedFrom.length; i++) {
-    if(props.book.requestedFrom[i] === props.username) {
+  for(let i=0; i < props.book.requested_From.length; i++) {
+    if(props.book.requested_From[i] === props.username) {
       return (
         <div className="singleOfferContainer">
           <div>you want {props.book.title}</div>
