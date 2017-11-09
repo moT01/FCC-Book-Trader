@@ -120,32 +120,36 @@ router.patch('/requestBook', (req, res) => {
  }
 
  request(_id, username);
-   //i want the response to look like this
-	// [allBooks, message]
-	//as shown at the bottom
-
-	//so in here we need to add the userId to the books requestedFrom array
-	//then send the response
-
-	//books.find().then(r => res.send([r, message]) );
 });
 
 router.patch('/unrequestBook', (req, res) => {
-	const {isbn, username} = req.body;
+	const {_id, username} = req.body;
    let message = {'messageType': 'success', 'messageMessage': 'Book Unrequested'};
+   let error;
 
-   //here's the variables
-	//console.log('username='+username);
-	//console.log('isbn='+isbn);
-
-   //i want the response to look like this
-	// [allBooks, message]
-	//as shown below
-
-	//here we need to remove the username from the requestedFrom array in the bookModel of the isbn
-	//then send the response
-
-	books.find().then(r => res.send([r, message]) );
+   async function unrequest(_id, username){
+     try{
+       await books.findOne({"_id":_id}, function (err, book) {
+           console.log(book.requested_From);
+           console.log(username);
+           //book.requested_From.push(username);
+           let index = book.requested_From.indexOf(username);
+           if (index > -1) {
+              book.requested_From.splice(index, 1);
+            }
+           book.save();
+         });
+     }catch(e){
+         console.log("log: " + e);
+         message = {'messageType': 'error', 'messageMessage': 'server error'};
+         error = e;
+     }finally{
+       books.find()
+           .then(r=>res.send([r,message]))
+           .catch(e=>res.send([e,message]));
+     }
+   }
+   unrequest(_id, username);
 });
 
 router.patch('/acceptOffer', (req, res) => {
