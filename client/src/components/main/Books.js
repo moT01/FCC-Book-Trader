@@ -4,11 +4,8 @@ import Book from '../common/Book';
 import { connect } from 'react-redux';
 
 class Books extends Component { 
-  componentWillMount() {
-    this.props.getAllBooks();
-  }
-
   render() {
+    this.props.getAllBooks();
     return (
       <div className="manyBooksContainer">
         {this.props.allBooks.map((book, index) =>

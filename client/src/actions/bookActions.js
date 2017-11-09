@@ -49,7 +49,7 @@ export function requestBook(_id, username) {
 export function deleteBook(_id) {
   console.log("fromaction:"+ _id);
   return dispatch => {
-    return axios.delete('/api/book/deleteBook/' + _id).then(res => {
+    return axios.post('/api/book/deleteBook/' + _id).then(res => {
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));
@@ -58,8 +58,9 @@ export function deleteBook(_id) {
 }
 
 export function unrequestBook(_id, username) {
+	console.log(_id+' '+username);
   return dispatch => {
-    return axios.delete('/api/book/unrequestBook', {_id, username}).then(res => {
+    return axios.patch('/api/book/unrequestBook', {_id, username}).then(res => {
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));
@@ -69,7 +70,7 @@ export function unrequestBook(_id, username) {
 
 export function acceptOffer(_id, username, reqUsername) {
   return dispatch => {
-    return axios.delete('/api/book/acceptOffer', {_id, username, reqUsername}).then(res => {
+    return axios.patch('/api/book/acceptOffer', {_id, username, reqUsername}).then(res => {
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));
