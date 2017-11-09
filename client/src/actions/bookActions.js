@@ -36,9 +36,9 @@ export function addNewBook(data) {
   }
 }
 
-export function requestBook(isbn, username) {
+export function requestBook(_id, username) {
   return dispatch => {
-    return axios.patch('/api/book/requestBook', {isbn, username}).then(res => {
+    return axios.patch('/api/book/requestBook', {_id, username}).then(res => {
       const allBooks = res.data[0];
       const messages = res.data[1];
       dispatch(allBooksPlusMessage(allBooks, messages));

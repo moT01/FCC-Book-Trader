@@ -95,13 +95,31 @@ router.delete('/deleteBook/:id', (req, res) => {
 });
 
 router.patch('/requestBook', (req, res) => {
-	const {isbn, username} = req.body;
+	const {_id, username} = req.body;
+
    let message = {'messageType': 'success', 'messageMessage': 'Book Requested'};
+   let error;
 
-   //here's the variables
-   //try requesting a book in myBooks if the option is there to see the logs
-	console.log('isbn='+isbn);
+  async function request(_id, username){
+     try{
+       await books.findOne({"_id":_id}, function (err, book) {
+           console.log(book.requested_From);
+           console.log(username);
+           book.requested_From.push(username);
+           book.save();
+         });
+     }catch(e){
+         console.log("log: " + e);
+         message = {'messageType': 'error', 'messageMessage': 'server error'};
+         error = e;
+     }finally{
+       books.find()
+           .then(r=>res.send([r,message]))
+           .catch(e=>res.send([e,message]));
+     }
+ }
 
+ request(_id, username);
    //i want the response to look like this
 	// [allBooks, message]
 	//as shown at the bottom
@@ -109,7 +127,7 @@ router.patch('/requestBook', (req, res) => {
 	//so in here we need to add the userId to the books requestedFrom array
 	//then send the response
 
-	books.find().then(r => res.send([r, message]) );
+	//books.find().then(r => res.send([r, message]) );
 });
 
 router.patch('/unrequestBook', (req, res) => {

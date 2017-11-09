@@ -18,7 +18,7 @@ class Book extends React.Component {
 
   requestBook(){
     console.log('request');
-    this.props.requestBook(this.props.book.ISBN, this.props.username).then(res => {
+    this.props.requestBook(this.props.book._id, this.props.username).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
         text: this.props.messages.messageMessage
@@ -28,7 +28,7 @@ class Book extends React.Component {
 
   unrequestBook(){
   	 console.log('unrequest');
-    this.props.unrequestBook(this.props.book.ISBN, this.props.username).then(res => {
+    this.props.unrequestBook(this.props.book._id, this.props.username).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
         text: this.props.messages.messageMessage
