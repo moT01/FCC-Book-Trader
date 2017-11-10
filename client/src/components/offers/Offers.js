@@ -5,9 +5,9 @@ import { addFlashMessage } from '../../actions/flashMessages';
 import './Offers.css';
 
 class Offers extends Component {
-  unrequestBook() {
+  unrequestBook(book_id) {
   	 console.log('unrequest');
-    this.props.unrequestBook(this.book._id, this.props.username).then(res => {
+    this.props.unrequestBook(book_id, this.props.username).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
         text: this.props.messages.messageMessage
@@ -15,9 +15,9 @@ class Offers extends Component {
     });
   }
   
-  acceptOffer() {
+  acceptOffer(book_id, reqUsername) {
   	 console.log('accept');
-    this.props.acceptOffer(this.book.id, this.props.username, this.user).then(res => {
+    this.props.acceptOffer(book_id, this.props.username, reqUsername).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
         text: this.props.messages.messageMessage
@@ -74,7 +74,7 @@ class Offers extends Component {
                   <a href={book.bookUrl} className="bookTitleDetail" target="_blank">{book.title}</a>
                   <div className="offerDetail"> from you</div>
                 </div>
-                <button onClick={this.acceptOffer.bind(this)} className="btn btn-primary offerBtn">accept</button>
+                <button onClick={() => this.acceptOffer(book._id, user)} className="btn btn-primary offerBtn">accept</button>
               </div>
             )}
             </div>
@@ -89,7 +89,7 @@ class Offers extends Component {
               <div className="offerDetail">You requested 
                 <a href={book.bookUrl} className="bookTitleDetail" target="_blank">{book.title}</a>
               </div>
-              <button onClick={this.unrequestBook.bind(this)} className="btn btn-secondary offerBtn">unrequest</button>
+              <button onClick={() => this.unrequestBook(book._id)} className="btn btn-secondary offerBtn">unrequest</button>
             </div>
           )}
         </div>
