@@ -4,11 +4,14 @@ import Book from '../common/Book';
 import { connect } from 'react-redux';
 
 class Books extends Component { 
+  componentWillMount() {
+    this.props.getAllBooks();  
+  }
+
   render() {
-    this.props.getAllBooks();
     return (
       <div className="manyBooksContainer">
-        {this.props.allBooks.map((book, index) =>
+        {this.props.allBooks.filter(book => !book.request_accepted).map((book, index) =>
           <Book key={index} book={book} userID={this.props.id} username={this.props.username} />
         )}
       </div>

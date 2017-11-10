@@ -16,7 +16,6 @@ router.get('/allBooks',(req,res)=>{
 });
 
 router.post('/addBook', (req, res) => {
-	//this is what gets sent to /addBook
 	const {isbn, username} = req.body;
    let message = {'messageType': 'success', 'messageMessage': 'ISBN Added'};
    let error;
@@ -70,8 +69,7 @@ router.post('/deleteBook/:id', (req, res) => {
    let message = {'messageType': 'error', 'messageMessage': 'Book Removed'};
    let error;
 
-	console.log(_id);
-  async function deleteBookID(_id){
+ async function deleteBookID(_id){
      try{
        var deleted = await books.remove({_id:_id});
      }catch(e){
@@ -98,8 +96,6 @@ router.patch('/requestBook', (req, res) => {
   async function request(_id, username){
      try{
        await books.findOne({"_id":_id}, function (err, book) {
-           console.log(book.requested_From);
-           console.log(username);
            book.requested_From.push(username);
            book.save();
          });
@@ -119,16 +115,12 @@ router.patch('/requestBook', (req, res) => {
 
 router.patch('/unrequestBook', (req, res) => {
 	const {_id, username} = req.body;
-	console.log('id='+_id);
-	console.log('username='+username);
    let message = {'messageType': 'success', 'messageMessage': 'Book Unrequested'};
    let error;
 
    async function unrequest(_id, username){
      try{
        await books.findOne({"_id":_id}, function (err, book) {
-           console.log(book.requested_From);
-           console.log(username);
            let index = book.requested_From.indexOf(username);
            if (index > -1) {
               book.requested_From.splice(index, 1);

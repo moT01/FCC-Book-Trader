@@ -1,3 +1,9 @@
+.offersContainer{}
+
+.offersTitle {
+  font-size: 18px;
+}
+
 .singleOfferContainer {
   display: -webkit-box;
   display: -moz-box;
@@ -5,4 +11,28 @@
   display: -webkit-flex;
   display: flex;
   justify-content: space-between;
+  margin: 5px;
+}
+
+.offerDetail {
+	display: inline;
+}
+
+.bookTitleDetail {
+  display: inline;
+  background-color: #e6e6e6;
+  margin: 0 5px;
+  padding: 0 5px;
+  border-radius: 2px;
+  color: #3366cc;
+}
+
+.bookTitleDetail:hover {
+  cursor: pointer;
+  background-color: #ccc;
+  text-decoration: none;
+}
+
+.offerBtn {
+  align-self: start;
 }
