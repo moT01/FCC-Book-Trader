@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetBookStatus } from './BookConditionals';
+import { GetBookStatus, GetBookStatus2 } from './BookConditionals';
 import { requestBook, deleteBook, unrequestBook } from '../../actions/bookActions';
 import { addFlashMessage } from '../../actions/flashMessages';
 import { connect } from 'react-redux';
@@ -42,14 +42,16 @@ class Book extends React.Component {
         <img className="bookImage" src={this.props.book.image ? this.props.book.image.large : 'http://via.placeholder.com/180x275'} alt="☒" />
 
         <ul className="bookDetailsContainer">
-          <li className="bookDetail">{this.props.book.authors[0]}</li>
-          <li className="bookDetail">{this.props.book.publisher}</li>
-          <li className="bookDetail">{this.props.book.ISBN}</li>
+          <GetBookStatus 
+            book={this.props.book}
+            userID={this.props.id}
+            username={this.props.username}
+          />
         </ul>
 
         <div className="bookButtonContainer">
           <a className="btn btn-primary bookButtonLeft" href={this.props.book.bookUrl} target="_blank">more info</a>
-          <GetBookStatus
+          <GetBookStatus2
             book={this.props.book}
             userID={this.props.id}
             username={this.props.username}
