@@ -3,9 +3,6 @@ import UserModel from '../models/users';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-//just to test
-import logs from '../models/logs'
-
 let router = express.Router();
 
 router.post('/', (req, res) => {
@@ -20,10 +17,13 @@ router.post('/', (req, res) => {
 
    if (user.length > 0){
      if (bcrypt.compareSync(password, user[0].pass_digest)) {
-       console.log(user[0].zipcode);
        const token = jwt.sign({
          id: user[0]._id,
          username: user[0].username,
+         firstName: user[0].firstName,
+         lastName: user[0].lastName,
+         city: user[0].city,
+         state: user[0].state,
          zipcode: user[0].zipcode,
          books: user[0].books
        }, process.env.JWT_SECRET);

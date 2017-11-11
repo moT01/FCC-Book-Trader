@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/authActions';
 import PropTypes from 'prop-types';
 
-
 class LoginForm extends React.Component {
   constructor(props){
     super(props);

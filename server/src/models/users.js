@@ -23,6 +23,18 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
+  firstName : {
+    type: String
+  },
+  lastName : {
+    type: String
+  },
+  city : {
+    type: String
+  },
+  state : {
+    type: String  
+  },
   zipcode: {
     type: Number,
     required: true

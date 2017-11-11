@@ -1,11 +1,10 @@
 import axios from 'axios';
-import { CHANGE_ZIP } from './types';
+import { CHANGE_SETTINGS } from './types';
 
-export function updateZip(zipcode) {
+export function updateSettings(settings) {
   return {
-    type: CHANGE_ZIP,
-
-    zipcode
+    type: CHANGE_SETTINGS,
+    settings
   };
 }
 export function userSignupRequest(userData) {
@@ -20,11 +19,13 @@ export function isUserExists(identifier) {
   }
 }
 
-export function changeZip(data) {
+export function changeSettings(data) {
   return dispatch => {
-    return axios.post('/api/users/zipcode', data).then(res => {
-      const {zipcode} = res.data;
-      dispatch(updateZip(zipcode));
+    return axios.post('/api/users/settings', data).then(res => {
+      const token = res.data.token;
+      const settings = res.data.user;
+      localStorage.setItem('jwtToken', token);
+      dispatch(updateSettings(settings));
     });
   }
 }

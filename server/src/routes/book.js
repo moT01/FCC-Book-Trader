@@ -64,7 +64,7 @@ router.post('/addBook', (req, res) => {
     getBookFromIsbn(isbn,username);
 });
 
-router.post('/deleteBook/:id', (req, res) => {
+router.patch('/deleteBook/:id', (req, res) => {
 	const _id = req.params.id;
    let message = {'messageType': 'error', 'messageMessage': 'Book Removed'};
    let error;
