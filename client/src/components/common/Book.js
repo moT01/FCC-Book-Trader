@@ -7,7 +7,6 @@ import './Books.css';
 
 class Book extends React.Component {
   deleteBook(){
-    console.log(this.props.book._id);
     this.props.deleteBook(this.props.book._id).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
@@ -17,7 +16,6 @@ class Book extends React.Component {
   }
 
   requestBook(){
-    console.log('request');
     this.props.requestBook(this.props.book._id, this.props.username).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
@@ -27,7 +25,6 @@ class Book extends React.Component {
   }
 
   unrequestBook(){
-  	 console.log('unrequest');
     this.props.unrequestBook(this.props.book._id, this.props.username).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,

@@ -3,23 +3,38 @@ import commonValidations from '../shared/validations/signup';
 import UserModel from '../models/users';
 import bcrypt from 'bcrypt';
 import isEmpty from 'lodash/isEmpty';
+import jwt from 'jsonwebtoken';
 
 let router = express.Router();
 
-router.post('/zipcode', (req, res) => {
-var {zipcode, userID} = req.body
+router.post('/settings', (req, res) => {
+var {firstName, lastName, city, state, zipcode, userID} = req.body
 
-console.log(req.body);
   UserModel.findOne({_id: userID}, function (err, user) {
     if(err)
     console.log(err);
     else{
+      user.firstName = firstName;
+      user.lastName = lastName;
+      user.city = city;
+      user.state = state;
       user.zipcode = zipcode;
       user.save(function(err, user){
         if (err) {
           res.status(500).json({ error: err });
         }else{
-          res.json({zipcode:user.zipcode});
+          const token = jwt.sign({
+            id: user._id,
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            city: user.city,
+            state: user.state,
+            zipcode: user.zipcode,
+            books: user.books
+          }, process.env.JWT_SECRET);
+       
+          res.json({token, user});
         }
       });
     }

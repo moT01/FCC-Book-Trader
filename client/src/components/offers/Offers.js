@@ -6,7 +6,6 @@ import './Offers.css';
 
 class Offers extends Component {
   unrequestBook(book_id) {
-  	 console.log('unrequest');
     this.props.unrequestBook(book_id, this.props.username).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
@@ -16,7 +15,6 @@ class Offers extends Component {
   }
   
   acceptOffer(book_id, reqUsername) {
-  	 console.log('accept');
     this.props.acceptOffer(book_id, this.props.username, reqUsername).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.messageType,
@@ -59,8 +57,6 @@ class Offers extends Component {
   	   }
       return bookMap;
   	 }, {offers: [], requests: [], acceptedOffers: [], acceptedRequests: []});
-
-    console.log(bookMap);
 
     return (
       <div>
